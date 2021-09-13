@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- v-cloak专门用来处理初始化页面时闪烁问题. 实现机制,先让盒子隐藏.然后vue实例管理了模板之后,自动删除v-cloak属性,让盒子展示 -->
+    <div id="app" v-cloak>
+        <div v-text="msg1">one</div>
+        <div v-html="msg2">two</div>
+        <div >{{msg1}}</div>
+    </div>
+
+    <script src="js/vue.js"></script>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                msg1: '普通文本',
+                msg2: '<h1>我是标题2</h1>'
+            }
+        })
+    </script>
+    
+    
+</body>
+</html>

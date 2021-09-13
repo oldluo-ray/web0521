@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    <div id="app" @click.self="farhandle"> 
+      <h1>欢迎来尚硅谷学习</h1>
+      <button v-on:click.once="handle">点我展示信息(v-on绑定)</button><br><br>
+      <button @click="handle1">点我展示信息(@绑定)</button><br><br>
+      <!-- 注意: 
+        1. 如果事件处理函数没有写任何的参数,接收到的就是事件对象
+        2. 如果事件处理函数手动传递了其他参数,默认就接收不到事件对象了
+        3. 如果既要传递其他参数,又需要使用事件对象,就通过$event手动将事件对象传递到函数中
+      -->
+      <button @click="handle2($event,'abc')">点我展示信息(传递参数)</button><br><br>
+
+      <a @click.prevent="handle3"  href="http://www.atguigu.com">点我展示信息(阻止默认事件)</a><br><br>
+
+      <button @click.stop="handle4">点我展示信息(阻止冒泡)</button><br><br>
+
+      <a @click.prevent.stop="handle5" href="http://www.atguigu.com">点我展示信息(阻止默认事件+冒泡)</a><br><br>
+
+      <input type="text" placeholder="按下回车键展示信息" @keyup.enter="handle6">
+    </div>
+
+    <script>
+
+         new Vue({
+           el: '#app',
+           data: {
+            // data中存放数据
+           },
+           methods:{
+             // 存放所有的函数
+            //  注意: methods中的函数,this默认指向了当前vue实例.但是千万不要把函数写成箭头函数,这样的话,this就指向外层的window
+             handle:()=>{
+              console.log('按钮被点击了',this);
+     
+             },
+             handle1(){
+              console.log('简写形式',this);
+             },
+             handle2(e,f){
+              // 事件处理函数默认可以接收到事件对象
+              console.log('参数',e,f);
+             },
+             handle3(e){
+              //  e.preventDefault()
+               console.log('123');
+             },
+             handle4(e){
+              console.log('按钮的事件触发了');
+              // e.stopPropagation()
+             },
+             farhandle(e){
+              
+               console.log('app根标签的点击事件触发了');
+             },
+             handle5(e){
+              console.log('按钮的事件触发了');
+              // e.stopPropagation()
+              // e.preventDefault()
+             },
+             handle6(e){
+               console.log(e);
+                // if(e.keyCode === 13){
+                //   console.log('按下回车键了');
+                // }
+                // if(e.key === 'Enter'){
+                //   console.log('按下回车键了');
+                // }
+             },
+           }
+         })
+
+         
+    </script>
+</body>
+</html>

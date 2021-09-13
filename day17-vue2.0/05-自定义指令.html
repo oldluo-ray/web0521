@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    
+    <div id="app" >
+        <!-- 1. v-focus的值要控制input的value的值. 一打开页面自动获取焦点 -->
+       <input type="text" v-focus="value">
+       <div v-test-count="n"></div>
+       <button @click="handle">按钮</button> 
+    </div>
+    <div id="root" >
+       <div v-test-count="n"></div>
+       <button @click="handle">按钮</button> 
+    </div>
+
+   
+
+    <script>
+
+        // 定义全局的自定义指令
+        // 注意: 指令名不能使用驼峰命名法. 如果是多个单词可以使用-
+        Vue.directive('test-count', function(element,binding){
+                    element.innerText = binding.value
+                })
+
+
+        new Vue({
+            el:'#app',
+            data: {
+                n: 0,
+                value: '123'
+            },
+            methods: {
+                handle(){
+                    this.n = ++this.n
+                    this.value = this.value + 1
+                }
+            },
+            // 局部自定义指令
+            directives: {
+                focus:{
+                    bind(element,binding){
+                        // console.log('bind执行了',element,binding);
+                        element.value = binding.value
+                        // 注意: bind执行的时候,标签还没有真正的渲染到页面上
+                    },
+                    inserted(element,binding){
+                        // 这时元素插入到页面上了(渲染了)
+                        element.focus()
+                    },
+                    update(element,binding){
+                        element.value = binding.value
+                    }
+                },
+                // t: {
+                //     bind(element,binding){
+                //         // console.log('bind执行了',element,binding);
+                //         element.innerText = binding.value
+                //         // 注意: bind执行的时候,标签还没有真正的渲染到页面上
+                //     },
+                //     update(element,binding){
+                //         element.innerText = binding.value
+                //     }
+                // }
+                // 简写之后,这个回调函数,就相当于是bind和update.而bind和update里面的代码,基本上都是一样的 .所以直接简写
+                // t(element,binding){
+                //     element.innerText = binding.value
+                // }
+
+            }
+          
+        })
+    
+        new Vue({
+            el: '#root',
+            data:{
+                n: 10
+            },
+            methods:{
+                handle(){
+                    this.n = ++this.n
+                }
+            }
+        })
+    </script>
+    
+    
+</body>
+</html>

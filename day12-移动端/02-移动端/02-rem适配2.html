@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./02-适配2.css">
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 345/37.4rem;
+            height: 1.5rem;
+            margin: 0.15rem;
+            background-color: skyblue;
+        }
+    </style> -->
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // window.onresize 当布局视口发生变化的时候,会触发
+        // 1. 动态的计算当前设备根标签字体的大小
+        // const fontSize = 设备独立像素的宽度 / 10
+        function adapter(){
+            const fontSize = document.documentElement.clientWidth / 10
+            document.documentElement.style.fontSize = fontSize + 'px'
+        }
+        adapter()
+        window.onresize = adapter
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 1. 引入vue.js -->
+    <script src="js/vue.js"></script>
+
+    <!-- 2. 定义模板 -->
+    <div id="root">
+      <h1>hello, {{msg}}</h1>
+    </div>
+
+    <!-- 3. 创建vue实例对象,管理模板 
+    注意: 一个vue实例,对应一个模板
+    -->
+    <script>
+      // vm 就是当前new 出来的 vue实例对象
+      const vm = new Vue({
+        el: '#root', // 绑定vue实例和模板
+        // el: document.getElementById('root'), // 绑定vue实例和模板
+        data: {
+          // 定义在模板中要使用的数据
+          msg: 'atguigu',
+        },
+      })
+      console.log(vm)
+    </script>
+  </body>
+</html>

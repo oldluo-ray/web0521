@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="js/vue.js"></script>
+
+    <div id="root">
+      <!-- v-bind这种绑定数据的方式,叫做单向数据绑定  data->视图 -->
+      <input type="text" :value="val1" />
+      <br />
+      <br />
+      <!-- v-model这种绑定数据的方式,就是双向数据绑定  data <=> 视图 -->
+      <input type="text" v-model:value="val2" />
+      <!-- 简写形式: -->
+      <input type="text" v-model="val2" />
+      <!-- <input type="checkbox" v-model:checked="isChecked" /> -->
+      <input type="checkbox" v-model="isChecked" />
+    </div>
+
+    <script>
+      // 因为vm代理了data,所以可以实现双向数据绑定
+      // 由于vm代理了data, 所以vm身上就有val1,val2,isChecked这些属性的getter和setter
+      // 在模板中直接使用data中的属性,其实是用的是vm身上代理的data的属性,触发了对应的getter和setter
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          val1: '测试文本',
+          val2: '测试文本',
+          isChecked: true,
+        },
+      })
+      console.log(vm)
+    </script>
+
+    <script>
+      // 数据代理: 一个对象,代理另一个对象的数据
+      let obj = { x: 100 } // obj被代理
+      let obj2 = { y: 200 } //代理
+
+      Object.defineProperty(obj2, 'x', {
+        get() {
+          console.log('getter被调用了')
+          return obj.x
+        },
+        set(value) {
+          console.log('setter被调用了')
+          obj.x = value
+        },
+      })
+      console.log(obj)
+      console.log(obj2)
+      obj2.x = 3000
+      console.log(obj)
+    </script>
+  </body>
+</html>

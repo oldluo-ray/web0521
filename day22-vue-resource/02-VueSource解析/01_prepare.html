@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="test">尚硅谷IT教育</div>
+
+    <div id="demo">
+      <ul>
+        <li>test1</li>
+        <li>test2</li>
+        <li>test3</li>
+        <li>test4</li>
+        <li>test5</li>
+      </ul>
+    </div>
+
+    <!--
+    1. [].slice.call(lis): 将伪数组转换为真数组
+
+       //将伪数组转成数组
+
+       Array.from(伪数组) es6语法
+
+    2. node.nodeType: 得到节点类型
+        1: 元素节点
+        3: 文本节点
+    3. Object.defineProperty(obj, propertyName, {}): 给对象添加属性(指定描述符)
+    4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
+    5. obj.hasOwnProperty(prop): 判断prop是否是obj自身的属性
+    6. DocumentFragment: 文档碎片(高效批量更新多个节点)
+    7. RegExp.$1
+    -->
+    <script>
+      // 1. 将伪数组,转成数组
+      // const lis = document.getElementsByTagName('li')
+      // console.log(lis)
+
+      // console.log([].slice.call(lis))
+      // console.log(Array.prototype.slice.call(lis))
+
+      // lis.forEach((item) => {
+      //   console.log(item)
+      // })
+
+      // 2. 判断节点类型
+      // const test = document.getElementById('test')
+      // console.dir(test)
+
+      // Object.defineProperty // es5中用来定义对象的方法
+
+      // let obj = {}
+      // let num = 10
+      // 用来重新定义对象的方法
+      // Object.defineProperty(obj, 'x', {
+      //   // 控制x属性的值,如果对象中以有x,则重新赋值,如果没有x,则添加x属性,并且赋值为1
+      //   // value: 1,
+      //   // writable: true, // 决定了x属性是否可以被重写. true表示可以被重写. 默认值是false
+      //   enumerable: true, // 表示当前对象的x属性,是否可以被枚举(遍历) 默认值是false
+      //   configurable: false, //表示当前对象的x属性,是否可以被删除或重新定义. 默认值也是false
+      //   get() {
+      //     console.log('getter调用了')
+      //     return num
+      //   },
+      //   set(newValue) {
+      //     console.log('setter调用了')
+      //     num = newValue
+      //   },
+      // })
+      // obj.x = 3
+      // console.log(obj)
+      // for (let key in obj) {
+      //   console.log(key)
+      // }
+
+      // console.log(obj.x)
+      // obj.x = 30
+      // console.log(obj.x)
+      let obj = {
+        name: 'zs',
+        age: 18,
+      }
+
+      obj.__proto__.sex = '男'
+
+      // const arr = Object.keys(obj)
+      // arr.forEach((item) => {
+      //   console.log(item, obj[item])
+      // })
+
+      // console.log(obj.hasOwnProperty('name'))
+      // console.log(obj.hasOwnProperty('age'))
+      // console.log(obj.hasOwnProperty('sex'))
+
+      // 创建文档碎片
+      const fragment = document.createDocumentFragment()
+      const div = document.getElementById('demo')
+      const ul = div.firstElementChild
+      // 把ul添加到文档碎片中
+      // 将ul从dom树移除,添加到了fragment中. 那么后面再操作ul,就是在内存里操作对象.而不会引起页面的重排和重绘,性能更高
+      fragment.appendChild(ul)
+
+      // 在内存中从文档碎片中拿出dom对象,进行操作
+      console.log(fragment)
+      // 获取所有的li标签,进行操作
+      let lis = fragment.firstElementChild.children
+      lis = [].slice.call(lis) // 将lis伪数组,转成数组
+      console.log(lis)
+      lis.forEach((item) => {
+        item.style.backgroundColor = 'red'
+      })
+      // 操作完毕之后,将内存中的dom,重新添加到dom树上
+      div.appendChild(ul)
+
+      // const reg = /^\d$/ig
+      // const reg = new RegExp('\\d','ig')
+
+      const reg = /^(\d{4})-(\d{1,2})-(\d{1,2})$/
+      reg.test('2021-09-13')
+      console.log(RegExp.$1)
+      console.log(RegExp.$2)
+      console.log(RegExp.$3)
+      console.log(RegExp.$4)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1. data-xxx 这种自定义属性的方法,可读性更好 -->
+    <div id="box" class="one" data-xxx="1" data-i="123" data-b="abc"></div>
+    <script>
+       const div =  document.getElementsByTagName('div')[0]
+    //    console.log(div);
+    //    console.log(div.id, div.className);
+    //    console.log(div.index);
+    // console.log(div.getAttribute('id'));
+    // console.log(div.getAttribute('data-xxx'));
+    // 2. 获取对应属性的值的代码写起来比较简单
+    console.log(div.dataset.xxx);
+    console.log(div.dataset.i);
+    console.log(div.dataset.b);
+    // 3. 通过js添加data-系列的自定义属性
+    div.dataset.yyy = '890'
+    </script>
+</body>
+</html>

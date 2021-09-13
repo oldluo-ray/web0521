@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    <div id="app" > 
+      姓: <input type="text" v-model="firstName"> <br><br>
+      名: <input type="text" v-model="lastName"> <br><br>
+      <!-- 利用methods实现全名: 双向数据绑定,用户修改数据的时候,data数据被修改了,导致视图要更新.  函数就会被调用,返回最新的全名-->
+      <!-- 全名: <div>{{fullName()}}</div> -->
+      全名: <div>{{fullName}}</div>
+      <!-- <button @click="handle">按钮-修改fullName</button> -->
+    </div>
+
+    <script>
+
+         const vm = new Vue({
+           el: '#app',
+           data: {
+            // data中存放数据
+            firstName: '张',
+            lastName: '三',
+           },
+          //  methods:{
+          //   //  fullName(){
+          //   //    return this.firstName + '-' + this.lastName
+          //   //  }
+          //   // handle(){
+          //   //   this.fullName = '海静-lsp'
+          //   // }
+          //  },
+          computed: {
+            // 注意:computed中定义的属性也会添加到vm实例上
+            // 计算属性的值,都是通过已有的数据(data中的数据),计算得来的
+            //  fullName:{
+            //    get(){
+            //     //  getter被调用的时机: 1. 第一次解析 2.  依赖的值发生变化
+            //      console.log('getter被调用了');
+            //      // getter和setter里面的this依然指向vm
+            //      return  this.firstName + '-' + this.lastName
+            //    },
+              //  set(value){
+              //    console.log('setter被调用了',value);
+              //   const arr = value.split('-')
+              //   this.firstName = arr[0]
+              //   this.lastName = arr[1]
+              //  }
+            //  }
+            //  注意: 在实际开发中,计算属性,总是用来得到一个结果,从来不会修改计算属性的结果
+            // 所以一般计算属性,只写getter. 那么就可以简写
+            fullName(){
+              return  this.firstName + '-' + this.lastName
+            }
+          }
+          
+         })
+
+         console.log(vm);
+
+         
+    </script>
+</body>
+</html>

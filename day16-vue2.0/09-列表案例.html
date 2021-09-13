@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  
+</head>
+<body>
+    <script src="js/vue.js"></script>
+
+    <div id="app" > 
+        <input type="text" v-model="name"> 
+
+        <ul>
+          <li v-for="(item,index) in newList" :key="item.name">
+            {{item.name}} - {{item.age}} - {{item.sex === 'female' ? '女' : '男'}}
+          </li>
+         
+        </ul>
+    </div>
+
+    <script>
+
+        new Vue({
+           el: '#app',
+           data: {
+             name: '',
+             list: [
+               {
+                 name: '马冬梅',
+                 age: 40,
+                 sex: 'female'
+               },
+               {
+                 name: '周冬雨',
+                 age: 30,
+                 sex: 'female'
+               },
+               {
+                 name: '周杰伦',
+                 age: 40,
+                 sex: 'male'
+               },
+               {
+                 name: '温兆伦',
+                 age: 50,
+                 sex: 'male'
+               },
+             ]
+           },
+           computed:{
+              newList(){
+                return this.list.filter(item=>{
+                  return item.name.includes(this.name)
+                })
+              }
+           },
+          //  methods:{
+          //    handle(){
+          //       //根据用户输入,去找数据
+          //       // console.log(this.name);
+          //       // list:有四条数据, 根据this.name找到指定的多条数据,将指定的多条数据渲染到页面上
+          //       // 冬 ==> 马冬梅和周冬雨 
+          //       这样list的数据会变少,影响后面的过滤操作,所以应该使用计算属性实现
+          //       this.list = this.list.filter(item=>{
+          //         return item.name.includes(this.name)
+          //       })
+          //    }
+          //  }
+        })
+ 
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  
+</head>
+<body>
+    <script src="js/vue.js"></script>
+
+    <div id="app" > 
+        <!-- <div v-if="age>=18">成年人看的电影</div>
+        <div v-else-if="age>12&&age<18">未成年人看的电影</div>
+        <div>乱入</div>
+        <div v-else>小朋友看的动画片</div> -->
+
+        <!-- v-show: 通过样式隐藏   v-if: 直接将并且移除掉 -->
+        <div v-show="vacation">明天放假了 ,好开心啊</div>
+        <div v-if="vacation">明天放假了 ,好开心啊</div>
+    </div>
+
+    <script>
+
+        new Vue({
+           el: '#app',
+           data: {
+             age: 10,
+             vacation: false
+           }
+          
+        })
+ 
+    </script>
+</body>
+</html>

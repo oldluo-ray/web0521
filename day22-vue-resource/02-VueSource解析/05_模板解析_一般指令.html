@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>05_模板解析_一般指令</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 设置元素textContent，和插值语法一致 -->
+      <p v-text="msg"></p>
+      <!-- 设置元素innerHTML -->
+      <p v-html="msg"></p>
+    </div>
+    <script src="./js/mvvm.js"></script>
+    <script src="./js/compile.js"></script>
+    <script src="./js/observer.js"></script>
+    <script src="./js/watcher.js"></script>
+    <script>
+      
+      new MVVM({
+        el: "#app",
+        data: {
+          msg: "<span>hello atguigu</span>",
+        },
+      });
+    </script>
+  </body>
+</html>

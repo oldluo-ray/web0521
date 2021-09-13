@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+      const arr = [
+        { name: 'zs', age: 18 },
+        { name: 'ls', age: 20 },
+        { name: 'wb', age: 16 },
+      ]
+
+      let ul = (
+        <ul>
+          {arr.map((item, index) => {
+            return (
+              // key属性永远写在遍历的最外层标签上面,加key是为了提升底层执行的性能
+              <li key={index}>
+                <h1>{item.name}</h1>
+                <p>{item.age}</p>
+              </li>
+            )
+          })}
+        </ul>
+      )
+
+      // let ul = <ul>{[<li>1</li>, <li>2</li>]}</ul>
+      // let ul = <ul><li>1</li><li>2</li></ul>
+
+      ReactDOM.render(ul, document.getElementById('root'))
+    </script>
+  </body>
+</html>

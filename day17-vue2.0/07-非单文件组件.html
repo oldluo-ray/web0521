@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="js/vue.js"></script>
+
+    <div id="app">
+      <!-- 注意: 注册组件时,键是什么,意味着组件名就是什么 -->
+      <student></student>
+      <school></school>
+    </div>
+
+    <script>
+      Vue.config.productionTip = false
+      // 1. 定义组件
+      const student = Vue.extend({
+        template: `<div>
+                    <h1>这是一个学生组件--{{this.name}}</h1>
+                </div>`,
+        data() {
+          return {
+            name: 'zs',
+          }
+        },
+        // data:{
+        //     name: 'zs'
+        // },
+        methods: {},
+      })
+
+      const school = Vue.extend({
+        template: `<div><h1>这是一个学校组件--{{this.name}}</h1></div>`,
+        data() {
+          return {
+            name: 'atguigu',
+          }
+        },
+      })
+
+      new Vue({
+        el: '#app',
+        components: {
+          student,
+          school,
+        },
+      })
+    </script>
+  </body>
+</html>

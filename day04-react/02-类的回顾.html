@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 类其实是构造函数的语法糖
+
+        // function Person(name,age){
+        //     // 每个对象私有的属性,写在构造函数中,最终直接添加到了实例上面
+        //     this.name = name
+        //     this.age = age
+           
+        // }
+        // // 共有的属性,添加到原型上,所有的实例都可以通过原型链访问
+        // Person.prototype.eat = function(){
+        //         console.log('吃');
+        // }
+
+        // function Student(name,age,score){
+        //     //借用构造函数法,用来继承添加到实例上的属性
+        //     Person.call(this,name,age)
+        //     this.score = score
+        // }
+
+        // Student.prototype = new Person()
+
+
+
+        class Person {
+            constructor(name,age){
+                // 写在constructor中,属性添加到实例上
+                this.name = name 
+                this.age = age
+            }
+            // 写在类的结构体中,属性直接添加到了原型上
+            eat(){
+                console.log('类-吃');
+            }
+        }
+
+        class Student extends Person {
+             constructor(name,age, score){
+                 super(name,age)
+                 this.score = score
+             }   
+        }
+
+        // const p1 = new Person('zs', 18)
+        // const p2 = new Person('ls', 20)
+        // console.log(p1);
+        // console.log(p2);
+        // p1.eat()
+        // p2.eat()
+
+        const s1 = new Student('ww',21,100)
+        console.log(s1);
+        s1.eat()
+    </script>
+</body>
+</html>

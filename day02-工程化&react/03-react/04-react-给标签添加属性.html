@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- 1. 引入react库 -->
+    
+    <script src="js/react.development.js"></script>
+   
+    <script src="js/react-dom.development.js"></script>
+   
+    <script src="js/babel.min.js"></script>
+
+    <!-- 2. 根据react中提供的方法,动态的创建元素 -->
+   
+    <script type="text/babel">
+        // 注意: 如果要写class.应该写成className
+        const div = <div id="box" test="123">
+                <p className="one">
+                    <span>test</span>    
+                </p>
+                <label htmlFor=""></label>
+            </div>
+        ReactDOM.render(div, document.getElementById('root'))
+    </script>
+</body>
+</html>

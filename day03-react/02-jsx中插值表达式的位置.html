@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .one {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .two {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+      // 小结: 插值表达式可以写入任何的js表达式
+      // 注意的问题: 不要直接渲染对象,函数声明,以及布尔值. 没有意义
+      // 插值表达式的位置: 1. 子节点(用来渲染) 2. 属性的值的位置(注册事件,行内样式, 控制表单)
+      let style = 'two'
+      const div = <div className={style}>test</div>
+
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

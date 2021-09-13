@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+      const btn = (
+        <button
+          onClick={function (e) {
+            // 这个e不是真实的事件对象,是react包装了真实的事件对象之后得到的一个合成事件.处理了事件对象的兼容问题.使用时和原生使用是一样的
+            // e.persist()
+            console.log(e)
+          }}
+        >
+          按钮
+        </button>
+      )
+      ReactDOM.render(btn, document.getElementById('root'))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    <script src="js/dayjs.min.js"></script>
+    <div id="app">
+        <h1>{{sex | formate}}</h1>
+        <h1>{{date | dateFormate}}</h1>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                sex: 'female',
+                date: Date.now()
+            },
+            filters: {
+                formate(value){
+                    console.log(this); // 注意: 在过滤器中,this指向不是vue实例
+                    return value === 'female' ? '女' : '男'
+                },
+                dateFormate(value){
+                    return dayjs(value).format('YYYY/MM/DD HH点mm分ss秒')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

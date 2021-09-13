@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    
+    <div id="app" >
+        <!-- <input id="inp"></input> -->
+        <div id="box">{{num}}</div>
+        <button @click="handle">按钮</button>
+        <button @click="destory">按钮</button>
+    </div>
+    
+
+   
+
+    <script>
+
+
+
+         new Vue({
+            // el:'#app',
+            data: {
+                num: 0
+            },
+            methods:{
+                handle(){
+                    this.num = ++this.num
+                },
+                destory(){
+                    // 让vm进入到卸载阶段
+                    this.$destroy()
+                }
+            },
+            // 所有生命周期钩子函数中的this,都指向当前vm
+            // 初始化阶段:
+            beforeCreate(){
+                // vm上还没有数据
+                console.log('beforeCreate',this.num);
+            },
+            created(){
+                // 数据初始化完毕
+                console.log('created',this.num);
+            },
+            // 挂载阶段
+            beforeMount(){
+                // 页面还没有渲染
+                // console.log('beforeMount',document.getElementById('inp'));
+                console.log('beforeMount');
+            },
+            mounted(){
+                //  页面已经渲染完毕
+                // console.log('mounted',document.getElementById('inp').focus());
+                console.log('mounted');
+            },
+            // 更新阶段
+            beforeUpdate(){
+                // 数据是新的, dom是旧的
+                console.log('beforeUpdate', '数据', this.num);
+                console.log('beforeUpdate', 'DOM', document.getElementById('box').innerText);
+            },
+            updated(){
+                // 数据是新的,dom是新的
+                console.log('updated', '数据', this.num);
+                console.log('updated', 'DOM', document.getElementById('box').innerText)
+            },
+            // 卸载阶段
+            beforeDestroy(){
+                console.log('beforeDestory',this.num);
+            },
+            destroyed(){
+                console.log('destoryed',this.num);
+            }
+
+        }).$mount('#app')
+    
+       
+    </script>
+    
+    
+</body>
+</html>

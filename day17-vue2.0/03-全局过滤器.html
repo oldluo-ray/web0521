@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    <script src="js/dayjs.min.js"></script>
+    <div id="app">
+        <h1>{{sex | formate}}</h1>
+        <h1>{{date | dateFormate('YYYY年MM月DD日')}}</h1>
+        <h1>{{date | dateFormate('HH点mm分ss秒')}}</h1>
+        <h1>{{date | dateFormate }}</h1>
+    </div>
+    <div id="root">
+        <h2>{{sex | formate}}</h2>
+    </div>
+    <script>
+        // 定义全局过滤器,所有的vue实例对应的所有的模板中都可以使用
+        Vue.filter('formate', function(value){
+                    console.log(this); // 注意: 在过滤器中,this指向不是vue实例
+                    return value === 'female' ? '女' : '男'
+                },)
+        // Vue.filter('xxx', function(value){
+        //             console.log(this); // 注意: 在过滤器中,this指向不是vue实例
+        //             return value === 'female' ? '女' : '男'
+        //         },)
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                sex: 'female',
+                date: Date.now()
+            },
+            // 局部: 只能在当前的vue实例所对应的模板中使用
+            filters: {
+               
+                dateFormate(value, str="YYYY年MM月DD日 HH点mm分ss秒"){
+
+                    return dayjs(value).format(str)
+                }
+            }
+        })
+        
+        new Vue({
+            el: '#root',
+            data: {
+                sex: 'male'
+            }
+        })
+    
+    </script>
+</body>
+</html>

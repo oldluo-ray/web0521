@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script type="text/babel">
+      // 需求: 对象里面是数据, 然后要将数据,动态的渲染到一个无序列表中
+
+      let obj = {
+        name: 'zs',
+        age: 18,
+        gender: '男',
+      }
+
+      // 在jsx中可以使用插值表达式的语法,用来动态的插入数据 {}
+      // 当在加载jsx的过程中,发现有插值表达式,就会将插值表达式中的代码当做js去解析
+      // 注意: 插值表达式中,只能写js表达式
+      // js表达式: 有返回值的一段js代码
+      // 变量, 字面量, 常量, 运算, 函数声明, 函数调用
+      // if,for...等语句都不是表达式
+      //   const ul = (
+      //     <ul>
+      //       <li>{obj.name}</li>
+      //       <li>{obj.age}</li>
+      //       <li>{obj.gender}</li>
+      //     </ul>
+      //   )
+      let a = 1
+      function fn() {
+        return 'test'
+      }
+
+      //   const div = <div>{a}</div>
+      //   const div = <div>{true}</div>
+      //   const div = <div>{[1, 2, 3]}</div> // 将数组中的值,一个一个拿出来渲染
+      //   const div = <div>{{ name: 'zs' }}</div> // 不要直接渲染对象,没有意义
+      //   const div = <div>{function () {}}</div> //
+      //   const div = <div>{fn()}</div> //
+      //   const div = <div>{1 + 2}</div> //
+      //   const div = <div>{100 || 200}</div> //
+      const div = <div>{true ? '1' : '0'}</div> //
+
+      // 总结: 当要渲染时,插值表达式中不要写布尔值,渲染不出来. 不要写对象,会报错. 不要写函数声明,会报错
+
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

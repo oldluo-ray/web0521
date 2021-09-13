@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.wrap {
+  background-color: #fff;
+  height: 100%;
+}
+
+.input-phone {
+  display: flex;
+  align-items: center;
+}
+
+.input-code {
+  display: flex;
+  align-items: center;
+}
+
+.code-btn {
+  height: 30px;
+  line-height: 30px;
+  margin-left: 20px;
+  /* 脚手架中,配置了自动将px转成rem的插件,但是1px边框不需要参与适配.所以后面加一个注释 no 则这一行代码不会将px转成rem */
+  border-left: 1px solid #ccc; /*no*/
+  padding-left: 10px;
+}
+
+.btn-login {
+  border-radius: 30px !important;
+  margin-top: 40px;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.link a {
+  color: #ccc;
+}
+.other-login {
+  display: flex;
+  color: #ccc;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.other-login .line {
+  width: 100px;
+  height: 1px; /*no*/
+  background-color: #ccc;
+}
+.icons {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 40px;
+  margin-top: 20px;
+}
+.icons i {
+  width: 45px;
+  height: 45px;
+  font-size: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 45px;
+}
+
+.icons .icon-github {
+  background-color: rgb(173, 169, 169);
+}
+.icons .icon-wechat {
+  background-color: rgb(57, 180, 74);
+}
+.icons .icon-qq {
+  background-color: rgb(79, 135, 182);
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+}

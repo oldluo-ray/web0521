@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 3.45rem;
+            height: 1.5rem;
+            margin: 0.15rem;
+            background-color: skyblue;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // window.onresize 当布局视口发生变化的时候,会触发
+        // 1. 动态的计算当前设备根标签字体的大小
+        // const fontSize = 设备独立像素的宽度 * 100 / 设计稿的宽度
+        function adapter(){
+            const fontSize = document.documentElement.clientWidth * 100 / 375
+            document.documentElement.style.fontSize = fontSize + 'px'
+        }
+        adapter()
+        window.onresize = adapter
+
+        // 让布局视口等比变大
+        // 获取meta[name=viewport]'
+        const viewport = document.querySelector('meta[name=viewport]')
+        // console.log(viewport);
+        // 计算要修改的initial-scale的值
+        // 2 -> 0.5, 3 -> 0.333
+        const scale = 1 / window.devicePixelRatio
+        console.log(scale);
+        // 修改viewport中initial-scale的值
+        viewport.content ='width=device-width, initial-scale='+scale
+
+        // 注意: 当修改完布局视口的宽度之后,盒子整体看起来会变小.最终还要实现跟设计稿相同的效果,就需要让盒子整体变大.方法: 让根标签字体 * 像素比
+        let fontSize = document.documentElement.style.fontSize
+        fontSize = parseFloat(fontSize)
+        fontSize = fontSize * window.devicePixelRatio
+        // console.log(fontSize);
+        document.documentElement.style.fontSize = fontSize + 'px'
+
+        
+    </script>
+   
+</body>
+</html>

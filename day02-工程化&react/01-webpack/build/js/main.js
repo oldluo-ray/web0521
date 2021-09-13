@@ -1,0 +1,1 @@
+!function(){"use strict";console.log("箭头函数"),console.log({name:"hj",info:"lsp"}),console.log({nj:"美丽"})}();

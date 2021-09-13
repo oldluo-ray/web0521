@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    <div id="app" > 
+      姓: <input type="text" v-model="firstName"> <br><br>
+      名: <input type="text" v-model="lastName"> <br><br>
+      全名: <div>{{fullName}}</div>
+    
+    </div>
+
+    <script>
+
+         const vm = new Vue({
+           el: '#app',
+           data: {
+            // data中存放数据
+            firstName: '张',
+            lastName: '三',
+            fullName: ''
+           },
+           // 监听属性. 监听已有的属性
+           watch:{
+              // 监听属性的简写: 相当于写了完整写法中的handler
+              // firstName(newValue,preValue){
+              //   // console.log(this.firstName);
+              //   // console.log('监听firstName触发了',newValue,preValue);
+              //   this.fullName = newValue + '-' + this.lastName
+              // },
+              // lastName(newValue,preValue){
+              //   // console.log('监听lastName触发了',newValue,preValue);
+              //   this.fullName = this.firstName + '-' + newValue
+              // }
+              // 监听属性的完整写法
+              firstName:{
+                immediate: true, //初始化时,立刻被调用一次,为了将fullName计算出来
+                handler(newValue, preValue){
+                  // handler的调用时机: 就是监听的数据发生变化的时候. 如果immediate值为true.初始化时也会被调用
+                  this.fullName = newValue + '-' + this.lastName
+                }
+              },
+              lastName:{
+                immediate: true,
+                handler(newValue, preValue){
+                  this.fullName = this.firstName + '-' + newValue
+                }
+              }
+           }
+          
+         })
+
+         console.log(vm);
+
+         
+    </script>
+</body>
+</html>

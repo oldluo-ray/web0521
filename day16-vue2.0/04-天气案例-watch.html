@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+    <script src="js/vue.js"></script>
+    <div id="app" > 
+      <h1>今天天气很{{info}}</h1>
+      <button @click="handle">切换天气</button>
+      
+    </div>
+
+    <script>
+
+        new Vue({
+           el: '#app',
+           data: {
+             isHot: false,
+             info: '凉爽'
+           },
+           methods:{
+              handle(){
+                this.isHot = !this.isHot
+              }
+           },
+           watch:{
+              isHot(newValue){
+                setTimeout(() => {
+                  this.info = newValue ? '炎热' : '凉爽'
+                }, 1000);
+                
+              }
+           }
+        })
+
+         
+
+         
+    </script>
+</body>
+</html>

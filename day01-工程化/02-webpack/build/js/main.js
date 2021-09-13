@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log({name:"hj",info:"lsp"}),console.log({nj:"美丽"})})();

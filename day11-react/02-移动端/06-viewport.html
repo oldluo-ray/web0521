@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- name的值为viewport 表示开启理想视口 -->
+    <!-- content的值就是对于开启理想视口的具体配置信息
+      width的值就决定了布局视口的宽度
+      width的取值: 数字/device-width
+      device-width是一个预设值.就表示当前设备独立像素的宽度
+      数字 那么布局视口的宽度就是这个具体的数字的值
+
+      initial-scale: 变相的修改布局视口的宽度
+
+      scale = 屏幕宽度(设备独立像素)  /  布局视口宽度。
+
+      注意: width和initial-scale都写是为了双保险
+      但是如果这两个配置项的值冲突了,谁值大就听谁的
+    
+    -->
+    <!-- <meta name="viewport" content="width=400" /> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=2.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <!-- <meta name="viewport" content="initial-scale=0.5" /> -->
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
